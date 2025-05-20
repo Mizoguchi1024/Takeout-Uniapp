@@ -18,7 +18,31 @@
 			<view class="row">
 				<up-tag text="满减" type="error"></up-tag>
 				全场满30减5，满38减10，满48减15
-				<up-tag text="领取优惠券" type="error" @click="onCouponClicked"></up-tag>
+				<up-tag text="领取优惠券" type="error" @click="onCouponOpen"></up-tag>
+				<up-popup :show="isPopupShow" mode="center" @close="onCouponClose" round="12">
+				    <up-card title="领取优惠券" padding="12" margin="0px" :border="false">
+						<template #body>
+							<view v-for="(item, index) in couponList"  :key="index">
+								<view style="display: flex; flex-direction: row; justify-content: space-between; gap: 30px; margin: 10px;">
+									<up-image src="/static/icons/coupon.png" width="42" height="42"></up-image>
+									<view style="display: flex; flex-direction: column;">
+										<text style="color: #000;">{{item.title}}</text>
+										<text>{{item.rule}}</text>
+										<text>{{item.expire}}</text>
+									</view>
+									<view style="display: flex; flex-direction: column;">
+										<text style="color: #ff0000; font-weight: bold;">￥{{item.amount}}</text>
+										<up-button text="领取" @click="onReceiveCoupon(index)" :disabled="item.isDisabled" size="mini" shape="circle" color="#fb642a" style="width: 50px;"></up-button>
+									</view>
+								</view>
+								<hr v-if="index < couponList.length - 1">
+							</view>
+						</template>
+						<template #foot>
+							<up-button text="关闭" @click="onCouponClose" shape="circle" type="primary"></up-button>
+						</template>
+					</up-card>
+				</up-popup>
 			</view>
 			<up-notice-bar :text="noticeText" direction="column"></up-notice-bar>
 		</up-sticky>
@@ -28,7 +52,7 @@
 		        <text class="grid-text">{{listItem.title}}</text>
 		    </up-grid-item>
 		</up-grid>
-		<up-tabs :list="tabsList" @click="onTabClicked"></up-tabs>
+		<up-tabs :list="tabList" @click="onTabClicked"></up-tabs>
 		
 	</view>
 </template>
@@ -106,9 +130,55 @@ function onTagClicked(index) {
 	})
 }
 
-function onCouponClicked() {
-	console.log("Clicked!")
+const isPopupShow = ref(false)
+
+const couponList = reactive([
+	{
+		title: '店铺通用优惠劵',
+		rule: '无门槛',
+		expire: '2025-11-19到期',
+		amount: '10',
+		isDisabled: false
+	},
+	{
+		title: '店铺通用优惠劵',
+		rule: '满30减5',
+		expire: '2025-11-19到期',
+		amount: '5',
+		isDisabled: false
+	},
+	{
+		title: '店铺通用优惠劵',
+		rule: '满42减8',
+		expire: '2025-11-19到期',
+		amount: '8',
+		isDisabled: false
+	},
+	{
+		title: '店铺通用优惠劵',
+		rule: '满100减16',
+		expire: '2025-11-19到期',
+		amount: '16',
+		isDisabled: false
+	}
+])
+
+
+function onCouponOpen() {
+	isPopupShow.value = true
 }
+
+function onCouponClose() {
+	isPopupShow.value = false
+}
+
+function onReceiveCoupon(index) {
+	uni.showToast({
+		title: '领取成功'
+	})
+	couponList[index].isDisabled = true
+}
+
 
 const noticeText = ref(['欢迎光临', '你好呀~', '公告：富态徐晨阳就是点外卖点出来的'])
 
@@ -160,7 +230,7 @@ function onGridClicked(){
 	console.log("Clicked!")
 }
 
-const tabsList = reactive([
+const tabList = reactive([
 	{name: '附近推荐'},
 	{name: '发现美食'},
 	{name: '水果'},
