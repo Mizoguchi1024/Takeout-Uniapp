@@ -1,0 +1,10 @@
+# 忽略 Node.js 模块
+node_modules/
+
+# 忽略uni-app模块
+uni_modules/
+
+# 忽略编译输出
+unpackage/
+
+manifest.json

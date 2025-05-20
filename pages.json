@@ -1,0 +1,104 @@
+{
+	"easycom": {
+			"autoscan": true,
+			// 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
+			"custom": {
+				"^u--(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
+				"^up-(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
+		    "^u-([^-].*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue"
+			}
+		},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path" : "pages/launch/launch",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-引导页"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": 
+			{
+				"navigationBarTitleText": "外卖APP-首页"
+			}
+		},
+		{
+			"path" : "pages/explore/explore",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-发现"
+			}
+		},
+		{
+			"path" : "pages/order/order",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-订单"
+			}
+		},
+		{
+			"path" : "pages/me/me",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-我的"
+			}
+		},
+		{
+			"path" : "pages/searchResults/searchResults",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-搜索结果"
+			}
+		},
+		{
+			"path" : "pages/message/message",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-消息中心"
+			}
+		},
+		{
+			"path" : "pages/search/search",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-搜索"
+			}
+		}
+	],
+	"tabBar": {
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "/static/icons/home_outline.png",
+				"selectedIconPath": "/static/icons/home_filled.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/explore/explore",
+				"iconPath": "/static/icons/compass_outline.png",
+				"selectedIconPath": "/static/icons/compass_filled.png",
+				"text": "发现"
+			},
+			{
+				"pagePath": "pages/order/order",
+				"iconPath": "/static/icons/order_outline.png",
+				"selectedIconPath": "/static/icons/order_filled.png",
+				"text": "订单"
+			},
+			{
+				"pagePath": "pages/me/me",
+				"iconPath": "/static/icons/user_outline.png",
+				"selectedIconPath": "/static/icons/user_filled.png",
+				"text": "我的"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
