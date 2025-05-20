@@ -12,38 +12,38 @@
 				</view>
 			</view>
 			<up-search v-model="keyword" search-icon="scan" :disabled="true" @click="onSearchClicked" @clickIcon="onScan" @search="onSearch" @custom="onSearch" style="margin-bottom: 5px;"></up-search>
-			<view class="row" style="gap: 8px;">
+			<view class="row">
 				<up-tag v-for="(listItem,listIndex) in tagList" :key="listIndex" :text="listItem.name" @click="onTagClicked(listIndex)" shape="circle" color="#000000" bgColor="#f2f2f2" borderColor="#f2f2f2"></up-tag>
 			</view>
 			<view class="row">
 				<up-tag text="满减" type="error"></up-tag>
-				全场满30减5，满38减10，满48减15
+				<text style="flex: 1;">超多优惠券等你来领</text>
 				<up-tag text="领取优惠券" type="error" @click="toggleCouponPopup"></up-tag>
-				<up-popup :show="isPopupShow" mode="center" @close="toggleCouponPopup" round="12">
-				    <up-card title="领取优惠券" padding="12" margin="0px" :border="false">
-						<template #body>
-							<view v-for="(item, index) in couponList"  :key="index">
-								<view style="display: flex; flex-direction: row; justify-content: space-between; gap: 40px; margin-inline: 16px;">
-									<up-image src="/static/icons/coupon.png" width="42" height="42"></up-image>
-									<view style="display: flex; flex-direction: column;">
-										<text style="color: #000;">{{item.title}}</text>
-										<text>{{item.rule}}</text>
-										<text>{{item.expire}}</text>
-									</view>
-									<view style="display: flex; flex-direction: column;">
-										<text style="color: #ff0000; font-weight: bold; font-size: 20px;">￥{{item.amount}}</text>
-										<up-button text="领取" @click="onReceiveCoupon(index)" :disabled="item.isDisabled" size="mini" shape="circle" color="#fb642a" style="width: 50px;"></up-button>
-									</view>
-								</view>
-								<hr v-if="index < couponList.length - 1" style=" margin-top: 15px; margin-bottom: 15px;">
-							</view>
-						</template>
-						<template #foot>
-							<up-button text="关闭" @click="toggleCouponPopup" shape="circle" type="primary"></up-button>
-						</template>
-					</up-card>
-				</up-popup>
 			</view>
+			<up-popup :show="isPopupShow" mode="center" @close="toggleCouponPopup" round="12">
+			    <up-card title="领取优惠券" padding="12" margin="0px" :border="false">
+					<template #body>
+						<view v-for="(item, index) in couponList"  :key="index">
+							<view style="display: flex; flex-direction: row; justify-content: space-between; gap: 40px; margin-inline: 16px;">
+								<up-image src="/static/icons/coupon.png" width="42" height="42"></up-image>
+								<view style="display: flex; flex-direction: column;">
+									<text style="color: #000;">{{item.title}}</text>
+									<text>{{item.rule}}</text>
+									<text>{{item.expire}}</text>
+								</view>
+								<view style="display: flex; flex-direction: column;">
+									<text style="color: #ff0000; font-weight: bold; font-size: 20px;">￥{{item.amount}}</text>
+									<up-button text="领取" @click="onReceiveCoupon(index)" :disabled="item.isDisabled" size="mini" shape="circle" color="#fb642a" style="width: 50px;"></up-button>
+								</view>
+							</view>
+							<hr v-if="index < couponList.length - 1" style=" margin-top: 15px; margin-bottom: 15px;">
+						</view>
+					</template>
+					<template #foot>
+						<up-button text="关闭" @click="toggleCouponPopup" shape="circle" type="primary"></up-button>
+					</template>
+				</up-card>
+			</up-popup>
 			<up-notice-bar :text="noticeText" direction="column"></up-notice-bar>
 		</up-sticky>
 		<up-grid :border="false" @click="onGridClicked" col="5" style="width: 100%; height: 180px;">
@@ -256,18 +256,19 @@ onLoad(()=>{
 </script>
 
 <style scoped>
-	.content {
-		padding-inline: 5px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-	
-	.row {
-		margin-bottom: 10px;
-		display: flex; 
-		flex-direction: row; 
-		align-items: center;
-	}
+.content {
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.row {
+	width: 100%;
+	margin-bottom: 10px;
+	display: flex; 
+	flex-direction: row; 
+	align-items: center;
+	gap: 8px;
+}
 </style>
