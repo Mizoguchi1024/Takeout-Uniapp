@@ -25,22 +25,16 @@
 		</up-card>
 		<up-card title="做任务赚吃货豆" @foot-click="onShowTaskClicked" title-color="#000" title-size="16" padding="12" margin="0px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="background-color: #fff;">
 			<template #body>
-				<view style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 20px;">
-					<up-image src="/static/icons/cake.png" width="40" height="40"></up-image>
-					<view style="display: flex; flex-direction: column;">
-						<text style="color: #000;">美食外卖今天下1单 吃货豆+100</text>
-						<text style="font-size: 10px;">每单实付满20元，截止5月20日23:59:59</text>
+				<view v-for="(item, index) in taskList" :key="index">
+					<view style="display: flex; flex-direction: row; justify-content: space-between;">
+						<up-image :src="item.src" width="40" height="40"></up-image>
+						<view style="display: flex; flex-direction: column;">
+							<text style="color: #000;">{{item.title}}</text>
+							<text style="font-size: 10px;">{{item.rule}}</text>
+						</view>
+						<up-button text="领任务" @click="onTaskButtonClicked(index)" :disabled="item.isDisabled" size="mini" shape="circle" color="#ff3300" style="width: 70px; margin: 0;"></up-button>
 					</view>
-					<up-button text="领任务" @click="onTaskButtonClicked" size="mini" shape="circle" color="#ff3300" style="width: 70px; margin: 0;"></up-button>
-				</view>
-				<hr>
-				<view style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 20px;">
-					<up-image src="/static/icons/red_envelope.png" width="40" height="40"></up-image>
-					<view style="display: flex; flex-direction: column;">
-						<text style="color: #000;">吃货红包天天膨胀 吃货豆+100</text>
-						<text style="font-size: 10px;">门槛不变金额最高28元</text>
-					</view>
-					<up-button text="领任务" @click="onTaskButtonClicked" size="mini" shape="circle" color="#ff3300" style="width: 70px; margin: 0;"></up-button>
+					<hr v-if="index < taskList.length - 1" style="margin-top: 15px; margin-bottom: 15px;">
 				</view>
 			</template>
 			<template #foot>
@@ -53,7 +47,7 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import {ref, reactive} from 'vue'
 
 const point = ref(100)
 
@@ -64,11 +58,27 @@ function onVipButtonClicked() {
 	})
 }
 
-function onTaskButtonClicked() {
+const taskList = reactive([
+	{
+		src:'/static/icons/cake.png',
+		title:'美食外卖今天下1单 吃货豆+100',
+		rule: '每单实付满20元',
+		isDisabled: false
+	},
+	{
+		src:'/static/icons/red_envelope.png',
+		title:'吃货红包天天膨胀 吃货豆+100',
+		rule: '门槛不变金额最高28元',
+		isDisabled: false
+	}
+])
+
+function onTaskButtonClicked(index) {
 	uni.showToast({
 		title: '直接送你了'
 	})
 	point.value+=100
+	taskList[index].isDisabled = true
 }
 
 function onShowTaskClicked() {

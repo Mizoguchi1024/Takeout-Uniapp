@@ -18,12 +18,12 @@
 			<view class="row">
 				<up-tag text="满减" type="error"></up-tag>
 				全场满30减5，满38减10，满48减15
-				<up-tag text="领取优惠券" type="error" @click="onCouponOpen"></up-tag>
-				<up-popup :show="isPopupShow" mode="center" @close="onCouponClose" round="12">
+				<up-tag text="领取优惠券" type="error" @click="toggleCouponPopup"></up-tag>
+				<up-popup :show="isPopupShow" mode="center" @close="toggleCouponPopup" round="12">
 				    <up-card title="领取优惠券" padding="12" margin="0px" :border="false">
 						<template #body>
 							<view v-for="(item, index) in couponList"  :key="index">
-								<view style="display: flex; flex-direction: row; justify-content: space-between; gap: 30px; margin: 10px;">
+								<view style="display: flex; flex-direction: row; justify-content: space-between; gap: 40px; margin-inline: 16px;">
 									<up-image src="/static/icons/coupon.png" width="42" height="42"></up-image>
 									<view style="display: flex; flex-direction: column;">
 										<text style="color: #000;">{{item.title}}</text>
@@ -31,15 +31,15 @@
 										<text>{{item.expire}}</text>
 									</view>
 									<view style="display: flex; flex-direction: column;">
-										<text style="color: #ff0000; font-weight: bold;">￥{{item.amount}}</text>
+										<text style="color: #ff0000; font-weight: bold; font-size: 20px;">￥{{item.amount}}</text>
 										<up-button text="领取" @click="onReceiveCoupon(index)" :disabled="item.isDisabled" size="mini" shape="circle" color="#fb642a" style="width: 50px;"></up-button>
 									</view>
 								</view>
-								<hr v-if="index < couponList.length - 1">
+								<hr v-if="index < couponList.length - 1" style=" margin-top: 15px; margin-bottom: 15px;">
 							</view>
 						</template>
 						<template #foot>
-							<up-button text="关闭" @click="onCouponClose" shape="circle" type="primary"></up-button>
+							<up-button text="关闭" @click="toggleCouponPopup" shape="circle" type="primary"></up-button>
 						</template>
 					</up-card>
 				</up-popup>
@@ -59,6 +59,7 @@
 
 <script setup>
 import {ref, reactive} from 'vue'
+import {onLoad} from '@dcloudio/uni-app'
 
 const avatarSrc = ref('')
 
@@ -130,7 +131,7 @@ function onTagClicked(index) {
 	})
 }
 
-const isPopupShow = ref(false)
+const isPopupShow = ref(true)
 
 const couponList = reactive([
 	{
@@ -164,12 +165,8 @@ const couponList = reactive([
 ])
 
 
-function onCouponOpen() {
-	isPopupShow.value = true
-}
-
-function onCouponClose() {
-	isPopupShow.value = false
+function toggleCouponPopup() {
+	isPopupShow.value = !isPopupShow.value
 }
 
 function onReceiveCoupon(index) {
@@ -227,7 +224,10 @@ const gridList = reactive([
 ]);
 
 function onGridClicked(){
-	console.log("Clicked!")
+	uni.showToast({
+		icon: 'error',
+		title: '该页面未开发'
+	})
 }
 
 const tabList = reactive([
@@ -241,6 +241,10 @@ function onTabClicked(item) {
     console.log('item', item);  
 }  
 
+
+onLoad(()=>{
+	
+})
 
 </script>
 
