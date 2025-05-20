@@ -2,13 +2,13 @@
 	<view class="content">
 		<up-sticky style="width: 100%;">
 			<view class="row" style="justify-content: space-between;">
-				<view class="row">
-					<up-avatar :src="avatarSrc" size="28"></up-avatar>
+				<view style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+					<up-avatar :src="avatarSrc" size="42"></up-avatar>
 					<text>地址</text>
 				</view>
-				<view class="row">
-					<up-icon @click="" name="shopping-cart" size="32"></up-icon>
-					<up-icon @click="onChatClicked" name="chat" size="28"></up-icon>
+				<view style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+					<up-icon @click="onCartClicked" name="shopping-cart" size="46"></up-icon>
+					<up-icon @click="onChatClicked" name="chat" size="40"></up-icon>
 				</view>
 			</view>
 			<up-search v-model="keyword" search-icon="scan" :disabled="true" @click="onSearchClicked" @clickIcon="onScan" @search="onSearch" @custom="onSearch" style="margin-bottom: 5px;"></up-search>
@@ -62,6 +62,13 @@ import {ref, reactive} from 'vue'
 import {onLoad} from '@dcloudio/uni-app'
 
 const avatarSrc = ref('')
+
+function onCartClicked() {
+	uni.showToast({
+		icon:'error',
+		title:'该页面未开发'
+	})
+}
 
 function onChatClicked(){
 	uni.navigateTo({

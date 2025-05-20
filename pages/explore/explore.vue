@@ -93,7 +93,7 @@ function onShowTaskClicked() {
 <style scoped>
 .content{
 	height: 100vh;
-	padding: 20px;
+	padding: 18px;
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
