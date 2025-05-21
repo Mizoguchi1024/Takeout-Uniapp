@@ -1,12 +1,12 @@
 <template>
 	<view style="display: flex; flex-direction: column; width: 100vw; height: 100vh;">
-		<up-sticky bgColor="#f2f2f2" style="width: 100%; display: flex; justify-content: center;">
+		<up-sticky bgColor="#f2f2f2">
 			<up-tabs :list="tabList" @click="onTabClicked"></up-tabs>
 		</up-sticky>
 		<view v-if="orderStore.orderList.length == 0" style="flex: 1; display: flex; justify-content: center;">
 			<up-empty mode="order"></up-empty>
 		</view>
-		<view v-else style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+		<view v-else style="flex: 1; display: flex; flex-direction: column; justify-content: start;">
 			<up-card v-for="(order, orderIndex) in orderStore.orderList" :key="orderIndex" :title="order.orderTime" :sub-title=statusMap[order.status]>
 				<template #body>
 					<view style="display: flex; flex-direction: row;">
@@ -25,7 +25,6 @@
 			</up-card>
 		</view>
 	</view>
-	
 </template>
 
 <script setup>

@@ -78,6 +78,20 @@
 			{
 				"navigationBarTitleText" : "外卖APP-编辑个人资料"
 			}
+		},
+		{
+			"path" : "pages/address/address",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-我的地址"
+			}
+		},
+		{
+			"path" : "pages/shop/shop",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"tabBar": {

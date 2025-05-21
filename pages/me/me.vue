@@ -17,7 +17,7 @@
 		<up-card title="常用功能" title-color="#000" title-size="20" padding="12" margin="10px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="width: 100%; background-color: #fff;">
 			<template #body>
 				<up-grid :border="false" col="4" @click="onCommonFunctionClicked">
-					<up-grid-item v-for="(item, index) in commonFunctionList" :key="index">
+					<up-grid-item v-for="(item, index) in commonFunctionList" :key="index" :name="item.title">
 						<up-image :src="item.icon" width="42" height="42"></up-image>
 						<text>{{item.title}}</text>
 					</up-grid-item>
@@ -37,7 +37,7 @@
 		<up-card title="更多推荐" title-color="#000" title-size="20" padding="12" margin="10px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="width: 100%; background-color: #fff;">
 			<template #body>
 				<up-grid :border="false" col="4" @click="onRecommendClicked">
-					<up-grid-item v-for="(item, index) in recommendList" :key="index" style="margin-bottom: 20px;">
+					<up-grid-item v-for="(item, index) in recommendList" :key="index" :name="item.title" style="margin-bottom: 20px;">
 						<up-image :src="item.icon" width="42" height="42"></up-image>
 						<text>{{item.title}}</text>
 					</up-grid-item>
@@ -86,11 +86,17 @@ const commonFunctionList = reactive([
 	}
 ])
 
-function onCommonFunctionClicked() {
-	uni.showToast({
-		icon:'error',
-		title:'该页面未开发'
-	})
+function onCommonFunctionClicked(name) {
+	if(name === '地址'){
+		uni.navigateTo({
+			url: '/pages/address/address'
+		})
+	}else{
+		uni.showToast({
+			icon:'error',
+			title:'该页面未开发'
+		})
+	}
 }
 
 
@@ -155,11 +161,17 @@ const recommendList = reactive([
 	},
 ])
 
-function onRecommendClicked() {
-	uni.showToast({
-		icon:'error',
-		title:'该页面未开发'
-	})
+function onRecommendClicked(name) {
+	if(name === '我的地址'){
+		uni.navigateTo({
+			url: '/pages/address/address'
+		})
+	}else{
+		uni.showToast({
+			icon:'error',
+			title:'该页面未开发'
+		})
+	}
 }
 
 </script>

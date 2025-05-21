@@ -1,13 +1,13 @@
 import { defineStore } from "pinia"
 import {ref, reactive} from "vue"
-import {apiList} from '@/utils/api/address.js'
+import {apiAddress} from '@/utils/api/address.js'
 
 export const useAddressStore = defineStore('address', () => {
 	const addressList = reactive([])
 	
 	async function getAddressList(){
 		try{
-			const res = await apiList()
+			const res = await apiAddress()
 			addressList.length = 0
 			addressList.push(...res)
 		}catch(err){
