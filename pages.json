@@ -64,6 +64,13 @@
 			{
 				"navigationBarTitleText" : "外卖APP-搜索"
 			}
+		},
+		{
+			"path" : "pages/profile/profile",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"tabBar": {

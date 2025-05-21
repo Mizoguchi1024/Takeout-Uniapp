@@ -11,14 +11,14 @@
 			</template>
 			<template #foot>
 				<view>
-					<text style="color: #fff; font-size: 14px;">升级超级吃货卡享 5 倍反豆</text>
+					<text style="color: #fff; font-size: 14px;">升级超级吃货卡享 5 倍返豆</text>
 				</view>
 			</template>
 		</up-card>
 		<up-card title="超级吃货卡" title-color="#cc6600" title-size="18" thumb="/static/icons/crown.png" thumb-width="38rpx" padding="12" margin="0px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="background-color: #fff;">
 			<template #body>
 				<view style="width: 100%; display: flex; flex-direction: row; justify-content: space-between;">
-					<text style="color: #cc6600; font-size: 14px;">每月得20元红包，5倍返吃货豆</text>
+					<text style="color: #cc6600; font-size: 14px;">每月得 20 元红包，5 倍返吃货豆</text>
 					<up-button text="￥0.5 开通" @click="onVipButtonClicked" size="mini" shape="circle" color="#cd8e49" style="width: 80px; margin: 0;"></up-button>
 				</view>
 			</template>

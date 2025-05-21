@@ -59,7 +59,10 @@
 
 <script setup>
 import {ref, reactive} from 'vue'
+import {useUserStore} from '@/store/user.js'
 import {onLoad} from '@dcloudio/uni-app'
+
+const userStore = useUserStore()
 
 const avatarSrc = ref('')
 
@@ -249,8 +252,9 @@ function onTabClicked(item) {
 }  
 
 
+
 onLoad(()=>{
-	
+	userStore.login()
 })
 
 </script>

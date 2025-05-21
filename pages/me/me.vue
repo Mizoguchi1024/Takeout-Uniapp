@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view style="width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-			<view style="display: flex; flex-direction: row; align-items: center;  gap: 10px;">
+			<view @click="onProfileClicked" style="display: flex; flex-direction: row; align-items: center;  gap: 10px;">
 				<up-avatar :src="avatarSrc" size="42"></up-avatar>
 				<text>用户名</text>
 			</view>
@@ -10,7 +10,7 @@
 		<up-card title="吃货卡" title-color="#fff" title-size="20" :sub-title="'吃货豆：'+ point" sub-title-color="#fff" padding="12" margin="10px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="width: 100%; background: linear-gradient(to right bottom, #05a1f4, #29c8ff);">
 			<template #body>
 				<view>
-					<text style="color: #fff;">升级超级吃货卡，下单5倍返吃货豆&gt;</text>
+					<text style="color: #fff;">升级超级吃货卡，下单 5 倍返吃货豆&gt;</text>
 				</view>
 			</template>
 		</up-card>
@@ -50,6 +50,18 @@
 <script setup>
 import {ref, reactive} from 'vue'
 
+function onProfileClicked() {
+	uni.navigateTo({
+	    url: '/pages/profile/profile'
+	})
+}
+
+function onChatClicked(){
+	uni.navigateTo({
+	    url: '/pages/message/message'
+	})
+}
+
 const point = ref(100)
 
 const commonFunctionList = reactive([
@@ -74,7 +86,7 @@ const commonFunctionList = reactive([
 function onCommonFunctionClicked() {
 	uni.showToast({
 		icon:'error',
-		title:'该页面还未开发'
+		title:'该页面未开发'
 	})
 }
 
@@ -101,7 +113,7 @@ const gameList = reactive([
 function onGameClicked() {
 	uni.showToast({
 		icon:'error',
-		title:'该页面还未开发'
+		title:'该页面未开发'
 	})
 }
 
@@ -143,7 +155,7 @@ const recommendList = reactive([
 function onRecommendClicked() {
 	uni.showToast({
 		icon:'error',
-		title:'该页面还未开发'
+		title:'该页面未开发'
 	})
 }
 
