@@ -1,11 +1,17 @@
 import { defineStore } from "pinia"
 import {ref} from "vue";
-import {apiLogin, apiLogout} from '@/utils/api/user.js'
+import {apiLogin, apiLogout, apiProfile, apiEditProfile} from '@/utils/api/user.js'
 
 export const useUserStore = defineStore('user', () => {
     const id = ref(0)
     const openid = ref('')
     const token = ref('')
+	const name = ref('')
+	const phone = ref('')
+	const sex = ref('')
+	const idNumber = ref('')
+	const avatar = ref('')
+	const createTime = ref('')
 
     async function login(){
         try {
@@ -26,10 +32,9 @@ export const useUserStore = defineStore('user', () => {
             const res = await apiLogin({ code: loginRes.code })
 
             // 3. 存储登录结果
-            const { id: userId, openid: userOpenid, token: userToken } = res
-            id.value = userId
-            openid.value = userOpenid
-            token.value = userToken
+            id.value = res.id
+            openid.value = res.openid
+            token.value = res.token
         
             console.log('用户id',id.value)
             console.log('用户openid',openid.value)
@@ -39,5 +44,31 @@ export const useUserStore = defineStore('user', () => {
           }
     }
 
-    return{id, openid, token, login}
+    async function getProfile(){
+        try {
+            const res = await apiProfile()
+            name.value = res.name
+            phone.value = res.phone
+            sex.value = res.sex
+            idNumber.value = res.idNumber
+            avatar.value = res.avatar
+            createTime.value = res.createTime
+        }catch(err){
+            console.error('获取用户信息失败', err)
+        }
+    }
+
+    async function editProfile(params){
+        try {
+        	await apiEditProfile(params)
+            uni.showToast({
+                title: '修改成功',
+                icon: 'success'
+            })
+        }catch(err){
+            console.error('修改用户信息失败', err)
+        }
+    }
+
+    return{id, openid, token, name, phone, sex, idNumber, avatar, createTime, login, getProfile, editProfile}
 })

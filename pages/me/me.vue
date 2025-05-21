@@ -2,8 +2,8 @@
 	<view class="content">
 		<view style="width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
 			<view @click="onProfileClicked" style="display: flex; flex-direction: row; align-items: center;  gap: 10px;">
-				<up-avatar :src="avatarSrc" size="42"></up-avatar>
-				<text>用户名</text>
+				<up-avatar :src="userStore.avatar" size="42" mode="aspectFill"></up-avatar>
+				<text>{{ userStore.name || '默认用户名' }}</text>
 			</view>
 			<up-icon @click="onChatClicked" name="chat" size="40"></up-icon>
 		</view>
@@ -49,6 +49,9 @@
 
 <script setup>
 import {ref, reactive} from 'vue'
+import { useUserStore } from '@/store/user.js'
+
+const userStore = useUserStore()
 
 function onProfileClicked() {
 	uni.navigateTo({

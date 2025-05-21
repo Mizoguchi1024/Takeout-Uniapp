@@ -3,8 +3,8 @@
 		<up-sticky style="width: 100%;">
 			<view class="row" style="justify-content: space-between;">
 				<view style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-					<up-avatar :src="avatarSrc" size="42"></up-avatar>
-					<text>地址</text>
+					<up-avatar :src="userStore.avatar" size="42" mode="aspectFill"></up-avatar>
+					<text>{{addressStore.addressList[0]?.districtName || '暂无地址'}}</text>
 				</view>
 				<view style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
 					<up-icon @click="onCartClicked" name="shopping-cart" size="46"></up-icon>
@@ -53,18 +53,17 @@
 		    </up-grid-item>
 		</up-grid>
 		<up-tabs :list="tabList" @click="onTabClicked"></up-tabs>
-		
 	</view>
 </template>
 
 <script setup>
 import {ref, reactive} from 'vue'
 import {useUserStore} from '@/store/user.js'
+import {useAddressStore} from '@/store/address.js'
 import {onLoad} from '@dcloudio/uni-app'
 
 const userStore = useUserStore()
-
-const avatarSrc = ref('')
+const addressStore = useAddressStore()
 
 function onCartClicked() {
 	uni.showToast({
@@ -253,8 +252,14 @@ function onTabClicked(item) {
 
 
 
-onLoad(()=>{
-	userStore.login()
+onLoad(async ()=>{
+	try{
+		await userStore.login()
+		await userStore.getProfile()
+		await addressStore.getAddressList()
+	}catch(err){
+		console.error('初始化失败', err)
+	}
 })
 
 </script>

@@ -5,7 +5,7 @@ import {useUserStore} from '@/store/user.js'
 
 // 请求超时设置
 const timeout = 30000;
-export default (params) => {
+export function request(params) {
 	const userStore = useUserStore()
 	
 	let url = params.url;
@@ -16,10 +16,13 @@ export default (params) => {
 		'content-type': 'application/json',
 		...params.header
 	};
-	console.log(header)
  
-	if (method === "post") {
-		header['Content-Type'] = 'application/json';
+	if (method === 'post') {
+		header['content-type'] = 'application/json'
+	}
+
+	if (url === 'common/upload'){
+		delete header['content-type']
 	}
 
     uni.showLoading({
@@ -74,6 +77,46 @@ export default (params) => {
 				uni.hideLoading();
 				// uni.hideToast();
 			}
+		})
+	})
+}
+
+export function UploadFile(params) {
+	const userStore = useUserStore()
+	
+	let url = params.url
+	let filePath = params.filePath
+	let name = params.name
+	
+	
+	
+	return new Promise((resolve, reject) => {
+		uni.uploadFile({
+			url: base_url + url,
+			filePath: filePath,         // 图片或文件路径
+			name: name,               // 后端字段名，根据后端定义来写
+			header: {
+				authentication: userStore.token || ''
+			},
+			success: (res) => {
+				const data = JSON.parse(res.data);
+				if (data.code === 1) {
+					resolve(data.data);
+				} else {
+					uni.showToast({
+						title: data.msg || '上传失败',
+						icon: 'error'
+					});
+					reject(data);
+				}
+			},
+			fail: (err) => {
+				uni.showToast({
+					title: '上传失败',
+					icon: 'error'
+				});
+				reject(err);
+			}
 		});
 	});
-};
+}

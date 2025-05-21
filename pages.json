@@ -69,7 +69,14 @@
 			"path" : "pages/profile/profile",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "外卖APP-个人资料"
+			}
+		},
+		{
+			"path" : "pages/profileEdit/profileEdit",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-编辑个人资料"
 			}
 		}
 	],

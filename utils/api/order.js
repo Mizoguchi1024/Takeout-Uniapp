@@ -1,4 +1,4 @@
-import request from "../request"
+import {request} from "../request"
 
 export function apiOrder(page, pageSize, status){
     let url = `order/historyOrders?page=${page}&pageSize=${pageSize}`

@@ -7,7 +7,7 @@
 			<up-empty mode="order"></up-empty>
 		</view>
 		<view v-else style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-			<up-card v-for="(order, orderIndex) in orderStore.orderList" :key="orderIndex" :title="order.orderTime">
+			<up-card v-for="(order, orderIndex) in orderStore.orderList" :key="orderIndex" :title="order.orderTime" :sub-title=statusMap[order.status]>
 				<template #body>
 					<view style="display: flex; flex-direction: row;">
 						<view style="flex: 1; display: flex; flex-direction: row; gap: 20px;">
@@ -72,6 +72,15 @@ function onTabClicked(item) {
 	}else{
 		orderStore.getOrderList(1, 10)
 	}
+}
+
+const statusMap = {
+  1: '待付款',
+  2: '待接单',
+  3: '已接单',
+  4: '派送中',
+  5: '已完成',
+  6: '已取消'
 }
 
 
