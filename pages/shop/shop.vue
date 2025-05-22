@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view style="padding-inline: 15px; padding-top: 15px;">
-			<up-image :src="shopStore.bannerSrc" radius=12 width="370" height="130" style="margin-bottom: 20px;"></up-image>
+			<up-image :src="shopStore.bannerSrc" radius=12 width="100%" height="130" style="margin-bottom: 20px;"></up-image>
 			<up-card :show-head="false" :border="false" margin="0px" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="margin-bottom: 20px;">
 				<template #body>
 					<view style="display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; gap: 20px;">
@@ -34,7 +34,7 @@
                             <template v-slot:label>
 								<view style="display: flex; flex-direction: column; gap: 8px; width: 140px;">
 									<text style="font-size: 12px;">{{ pageItem.description }}</text>
-                                    <text style="color: red; font-size: 16px;">￥{{ pageItem.price }}</text>
+                                    <text style="color: #ff2124; font-size: 16px;">￥{{ pageItem.price }}</text>
                                 </view>
                             </template>
                             <template v-slot:value>

@@ -106,6 +106,20 @@
 			{
 				"navigationBarTitleText" : "外卖APP-购物车"
 			}
+		},
+		{
+			"path" : "pages/submitOrder/submitOrder",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-下单"
+			}
+		},
+		{
+			"path" : "pages/pay/pay",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"tabBar": {

@@ -18,7 +18,7 @@
 						</view>
 						<view style="display: flex; flex-direction: column;">
 							<text style="color: #000; font-weight: bold;">￥{{order.amount}}</text>
-							<text>共 {{order.packAmount}} 件</text>
+							<text>共 {{order.packAmount}} 种</text>
 						</view>
 					</view>
 				</template>
@@ -30,7 +30,7 @@
 <script setup>
 import {ref, reactive} from 'vue'
 import { useOrderStore } from '@/store/order'
-import {onLoad} from '@dcloudio/uni-app'
+import {onLoad, onShow} from '@dcloudio/uni-app'
 
 const orderStore = useOrderStore()
 
@@ -84,8 +84,8 @@ const statusMap = {
 
 
 
-onLoad(()=>{
-	orderStore.getOrderList(1, 10)
+onShow(async()=>{
+	await orderStore.getOrderList(1, 20)
 })
 </script>
 

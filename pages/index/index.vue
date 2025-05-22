@@ -37,7 +37,7 @@
 										<up-button text="领取" @click="onReceiveCoupon(index)" :disabled="item.isDisabled" size="mini" shape="circle" color="#fb642a" style="width: 50px;"></up-button>
 									</view>
 								</view>
-								<hr v-if="index < couponList.length - 1" style=" margin-top: 15px; margin-bottom: 15px;">
+								<hr v-if="index < couponList.length - 1" style="margin-top: 15px; margin-bottom: 15px;"/>
 							</view>
 						</template>
 						<template #foot>

@@ -1,10 +1,11 @@
 import { defineStore } from "pinia"
 import {ref, reactive} from "vue"
-import {apiAddressList, apiAddressGetById, apiAddressInsert, apiAddressUpdate, apiAddressDelete, apiAddressSetDefault} from '@/utils/api/address.js'
+import {apiAddressList, apiAddressGetById, apiAddressInsert, apiAddressUpdate, apiAddressDelete, apiAddressSetDefault, apiAddressGetDefault} from '@/utils/api/address.js'
 
 export const useAddressStore = defineStore('address', () => {
 	const addressList = reactive([])
 	const address = reactive({})
+	const defaultAddress = reactive({})
 	
 	async function getAddressList(){
 		try{
@@ -68,6 +69,15 @@ export const useAddressStore = defineStore('address', () => {
 			console.error('设置默认地址失败', err)
 		}
 	}
+	
+	async function getDefault() {
+		try{
+			const res = await apiAddressGetDefault()
+			Object.assign(defaultAddress, res)
+		}catch(err){
+			console.error('获取默认地址失败', err)
+		}
+	}
 
-	return {addressList, address, getAddressList, getAddress, insertAddress, updateAddress, deleteAddress, setDefault}
+	return {addressList, address, defaultAddress, getAddressList, getAddress, insertAddress, updateAddress, deleteAddress, setDefault, getDefault}
 })

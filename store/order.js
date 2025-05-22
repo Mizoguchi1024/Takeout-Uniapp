@@ -1,10 +1,12 @@
 import { defineStore } from "pinia"
-import {ref, reactive} from "vue";
-import {apiOrder} from '@/utils/api/order.js'
+import {ref, reactive, computed} from "vue";
+import {apiOrder, apiOrderSubmit, apiOrderPay} from '@/utils/api/order.js'
 
 export const useOrderStore = defineStore('order', () => {
     const total = ref(0)
+	const submitResult = reactive({})
     const orderList = reactive([])
+
 
     async function getOrderList(page, pageSize, status){
         try {
@@ -18,7 +20,24 @@ export const useOrderStore = defineStore('order', () => {
             console.error('获取订单列表失败', err)
         }
     }
+	
+	async function submitOrder(addressId, packAmount, amount) {
+		try{
+			const res = await apiOrderSubmit(addressId, packAmount, amount)
+			Object.assign(submitResult, res)
+		}catch(err){
+			console.error('订单提交失败', err)
+		}
+	}
+	
+	async function payOrder() {
+		try{
+			await apiOrderPay(submitResult.orderNumber)
+		}catch(err){
+			console.error('订单支付失败', err)
+		}
+	}
     
 
-    return{total, orderList, getOrderList}
+    return{total, submitResult, orderList, getOrderList, submitOrder, payOrder}
 })

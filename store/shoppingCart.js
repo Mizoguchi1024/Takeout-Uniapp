@@ -1,9 +1,15 @@
 import { defineStore } from "pinia"
-import { ref, reactive } from "vue"
+import { ref, reactive, computed } from "vue"
 import { apiShoppingCartList, apiShoppingCartAdd, apiShoppingCartClean, apiShoppingCartSub } from '@/utils/api/shoppingCart.js'
 
 export const useShoppingCartStore = defineStore('shoppingCart', () => {
 	const shoppingCart = reactive([])
+	
+	const total = computed(()=>{
+		return shoppingCart.reduce((sum, item) => {
+		    return sum + item.amount * item.number
+		}, 0)
+	})
 	
 	async function getShoppingCart() {
 		try{
@@ -48,5 +54,5 @@ export const useShoppingCartStore = defineStore('shoppingCart', () => {
 		}
 	}
 	
-	return { shoppingCart, getShoppingCart, addShoppingCart, cleanShoppingCart, subShoppingCart}
+	return { shoppingCart, total, getShoppingCart, addShoppingCart, cleanShoppingCart, subShoppingCart}
 })
