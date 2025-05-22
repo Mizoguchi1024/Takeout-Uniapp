@@ -72,7 +72,6 @@ function onShoppingCartClicked(){
 
 onLoad(async () => {
     await shopStore.getDishList()
-	console.log('菜品列表',shopStore.dishList)
 })
 
 </script>
