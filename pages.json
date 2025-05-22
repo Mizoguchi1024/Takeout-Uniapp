@@ -99,6 +99,13 @@
 			{
 				"navigationBarTitleText" : "外卖APP-编辑地址"
 			}
+		},
+		{
+			"path" : "pages/shoppingCart/shoppingCart",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-购物车"
+			}
 		}
 	],
 	"tabBar": {

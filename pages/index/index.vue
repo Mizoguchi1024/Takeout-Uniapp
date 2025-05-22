@@ -4,7 +4,7 @@
 			<view class="row" style="justify-content: space-between; background-color: #f2f2f2; padding-inline: 15px; padding-top: 8px; padding-bottom: 8px;">
 				<view @click="onAddressClicked" style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
 					<up-avatar :src="userStore.avatar" size="42" mode="aspectFill"></up-avatar>
-					<text style="color: #000; font-size: 20px;">{{addressStore.addressList[0]?.districtName || '暂无地址'}}</text>
+					<text style="color: #1d1d1f; font-size: 20px; font-weight: bold;">{{addressStore.addressList[0]?.districtName || '暂无地址'}}</text>
 				</view>
 				<view style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
 					<up-icon @click="onCartClicked" name="shopping-cart" size="46"></up-icon>
@@ -57,15 +57,15 @@
 			</up-grid>
 		</view>
 		<up-tabs :list="tabList" @click="onTabClicked"></up-tabs>
-		<up-empty v-if="shopList[tabIndex].length == 0" mode="list"></up-empty>
+		<up-empty v-if="shopStore.shopList[tabIndex].length == 0" mode="list"></up-empty>
 		<view v-else>
-			<up-card v-for="(shop, index) in shopList[tabIndex]" :key="index" @click="onShopClicked" :show-head="false" :border="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)">
+			<up-card v-for="(shop, index) in shopStore.shopList[tabIndex]" :key="index" @click="onShopClicked" :show-head="false" :border="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)">
 				<template #body>
-					<view style="display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; gap: 30px;">
+					<view style="display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; gap: 20px;">
 						<up-image :src="shop.image" width="100" height="100" radius="8"></up-image>
 						<view style="display: flex; flex-direction: column; justify-content: space-between;">
 							<text style="color: #1d1d1f; font-size: 22px; font-weight: bold;">{{shop.name}}</text>
-							<view>
+							<view style="display: flex; flex-direction: column;">
 								<text>{{shop.score + ' ' + shop.sale+ ' '+ shop.time}}</text>
 								<text>{{shop.floor}}</text>
 							</view>
@@ -82,10 +82,12 @@
 import {ref, reactive} from 'vue'
 import {useUserStore} from '@/store/user.js'
 import {useAddressStore} from '@/store/address.js'
+import {useShopStore} from '@/store/shop.js'
 import {onLoad} from '@dcloudio/uni-app'
 
 const userStore = useUserStore()
 const addressStore = useAddressStore()
+const shopStore = useShopStore()
 
 
 function onAddressClicked(){
@@ -96,9 +98,8 @@ function onAddressClicked(){
 
 
 function onCartClicked() {
-	uni.showToast({
-		icon:'error',
-		title:'该页面未开发'
+	uni.navigateTo({
+	    url: '/pages/shoppingCart/shoppingCart'
 	})
 }
 
@@ -282,38 +283,6 @@ function onTabClicked(item) {
     tabIndex.value = item.index
 }  
 
-const shopList = reactive([
-	[
-		{
-			name:'望舒客栈',
-			score:'4.8分',
-			sale:'月售10000+',
-			time:'40分钟',
-			distance:'1km',
-			floor:'起送￥20',
-			image:'https://mizo.oss-cn-nanjing.aliyuncs.com/f782beb3-1be0-429f-8ee3-849cc289828d.png'
-		},
-		{
-			name:'万民堂',
-			score:'5.0分',
-			sale:'月售20000+',
-			time:'30分钟',
-			distance:'0.8km',
-			floor:'起送￥18',
-			image:'https://mizo.oss-cn-nanjing.aliyuncs.com/f79946ab-58df-45c0-aacb-5ebf38f40e95.png'
-		},
-		{
-			name:'蜜雪冰城',
-			score:'4.2分',
-			sale:'月售30000+',
-			time:'60分钟',
-			distance:'2km',
-			floor:'起送￥20',
-			image:'https://mizo.oss-cn-nanjing.aliyuncs.com/1039f896-1cea-4d86-9163-2b75a9be2eb9.png'
-		}
-	],
-	[],[],[]
-])
 
 function onShopClicked(){
 	uni.navigateTo({

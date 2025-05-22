@@ -1,8 +1,6 @@
 <template>
 	<view class="content">
-		<view style="padding-inline: 15px;">
-			<up-button text="新增地址" @click="onInsert" type="primary" shape="circle"></up-button>
-		</view>
+		<up-float-button :isMenu="false" bottom="50px" @click="onInsert"></up-float-button>
 		<up-card v-for="(address, addressIndex) in addressStore.addressList" :key="addressIndex" :title="address.consignee + ' ' + sexMap[address.sex]" :sub-title=address.phone :border="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)">
 			<template #body>
 				<view style="display: flex; flex-direction: column;">

@@ -3,7 +3,7 @@
 		<view style="width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
 			<view @click="onProfileClicked" style="display: flex; flex-direction: row; align-items: center;  gap: 10px;">
 				<up-avatar :src="userStore.avatar" size="42" mode="aspectFill"></up-avatar>
-				<text>{{ userStore.name || '默认用户名' }}</text>
+				<text style="color: #1d1d1f; font-size: 20px; font-weight: bold;">{{ userStore.name || '默认用户名' }}</text>
 			</view>
 			<up-icon @click="onChatClicked" name="chat" size="40"></up-icon>
 		</view>
