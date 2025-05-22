@@ -7,7 +7,7 @@
 			<up-empty mode="order"></up-empty>
 		</view>
 		<view v-else style="flex: 1; display: flex; flex-direction: column; justify-content: start;">
-			<up-card v-for="(order, orderIndex) in orderStore.orderList" :key="orderIndex" :title="order.orderTime" :sub-title=statusMap[order.status]>
+			<up-card v-for="(order, orderIndex) in orderStore.orderList" :key="orderIndex" :title="order.orderTime" :sub-title=statusMap[order.status] :border="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)">
 				<template #body>
 					<view style="display: flex; flex-direction: row;">
 						<view style="flex: 1; display: flex; flex-direction: row; gap: 20px;">

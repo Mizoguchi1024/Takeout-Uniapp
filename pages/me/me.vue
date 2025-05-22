@@ -7,10 +7,11 @@
 			</view>
 			<up-icon @click="onChatClicked" name="chat" size="40"></up-icon>
 		</view>
-		<up-card title="吃货卡" title-color="#fff" title-size="20" :sub-title="'吃货豆：'+ point" sub-title-color="#fff" padding="12" margin="10px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="width: 100%; background: linear-gradient(to right bottom, #05a1f4, #29c8ff);">
+		<up-card title="吃货卡" title-color="#fff" title-size="20" :head-style="{'font-weight':'bold', 'transform': 'skewX(-10deg)'}" padding="10" margin="10px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="width: 100%; background: linear-gradient(to right bottom, #05a1f4, #29c8ff 60%, #18f4ff 100%);">
 			<template #body>
-				<view>
-					<text style="color: #fff;">升级超级吃货卡，下单 5 倍返吃货豆&gt;</text>
+				<view style="display: flex; flex-direction: column; color: #fff; gap: 10px;">
+					<text style="font-weight: bold;">{{'吃货豆：' + point}}</text>
+					<text>升级超级吃货卡，下单 5 倍返吃货豆&gt;</text>
 				</view>
 			</template>
 		</up-card>

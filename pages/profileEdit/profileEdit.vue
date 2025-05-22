@@ -20,7 +20,7 @@
 				<up-input v-model="form.idNumber" placeholder="请输入内容"></up-input>
 			</up-form-item>
 		</up-form>
-		<up-button type="primary" @click="onSubmit">提交</up-button>
+		<up-button text="提交" type="primary" @click="onSubmit"></up-button>
 	</view>
 </template>
 

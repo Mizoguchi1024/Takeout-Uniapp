@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<up-card title="吃货卡" title-color="#fff" title-size="32" padding="12" margin="0px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="background: linear-gradient(to right bottom, #05a1f4, #29c8ff);">
+		<up-card title="吃货卡" title-color="#fff" title-size="32" :head-style="{'font-weight':'bold', 'transform': 'skewX(-10deg)'}" padding="12" margin="0px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="background: linear-gradient(to right bottom, #05a1f4, #29c8ff 60%, #18f4ff 100%);">
 			<template #body>
 				<view>
 					<text style="color: #fff; font-size: 22px;">吃货豆</text>
@@ -15,7 +15,7 @@
 				</view>
 			</template>
 		</up-card>
-		<up-card title="超级吃货卡" title-color="#cc6600" title-size="18" thumb="/static/icons/crown.png" thumb-width="38rpx" padding="12" margin="0px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="background-color: #fff;">
+		<up-card title="超级吃货卡" title-color="#cc6600" title-size="18" :head-style="{'font-weight':'bold', 'transform': 'skewX(-10deg)'}" thumb="/static/icons/crown.png" thumb-width="38rpx" padding="12" margin="0px" border-radius="32rpx" :border="false" :head-border-bottom="false" :foot-border-top="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)" style="background-color: #fff;">
 			<template #body>
 				<view style="width: 100%; display: flex; flex-direction: row; justify-content: space-between;">
 					<text style="color: #cc6600; font-size: 14px;">每月得 20 元红包，5 倍返吃货豆</text>

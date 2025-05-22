@@ -59,16 +59,16 @@
 		<up-tabs :list="tabList" @click="onTabClicked"></up-tabs>
 		<up-empty v-if="shopList[tabIndex].length == 0" mode="list"></up-empty>
 		<view v-else>
-			<up-card v-for="(shop, index) in shopList[tabIndex]" :key="index" @click="onShopClicked" :show-head="false">
+			<up-card v-for="(shop, index) in shopList[tabIndex]" :key="index" @click="onShopClicked" :show-head="false" :border="false" box-shadow="0px 0px 16px rgba(0, 0, 0, 0.25)">
 				<template #body>
-					<view style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 30px;">
+					<view style="display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; gap: 30px;">
 						<up-image :src="shop.image" width="100" height="100" radius="8"></up-image>
-						<view style="display: flex; flex-direction: column;">
-							<text>{{shop.name}}</text>
-							<view style="display: flex; flex-direction: row; justify-content: space-between;">
+						<view style="display: flex; flex-direction: column; justify-content: space-between;">
+							<text style="color: #1d1d1f; font-size: 22px; font-weight: bold;">{{shop.name}}</text>
+							<view>
 								<text>{{shop.score + ' ' + shop.sale+ ' '+ shop.time}}</text>
+								<text>{{shop.floor}}</text>
 							</view>
-							<text>{{shop.floor}}</text>
 						</view>
 						<text>{{shop.distance}}</text>
 					</view>
@@ -170,7 +170,7 @@ function onTagClicked(index) {
 	})
 }
 
-const isPopupShow = ref(true)
+const isPopupShow = ref(false)
 
 const couponList = reactive([
 	{
@@ -286,7 +286,7 @@ const shopList = reactive([
 	[
 		{
 			name:'望舒客栈',
-			score:4.8,
+			score:'4.8分',
 			sale:'月售10000+',
 			time:'40分钟',
 			distance:'1km',
@@ -295,7 +295,7 @@ const shopList = reactive([
 		},
 		{
 			name:'万民堂',
-			score:5.0,
+			score:'5.0分',
 			sale:'月售20000+',
 			time:'30分钟',
 			distance:'0.8km',
@@ -304,7 +304,7 @@ const shopList = reactive([
 		},
 		{
 			name:'蜜雪冰城',
-			score:4.2,
+			score:'4.2分',
 			sale:'月售30000+',
 			time:'60分钟',
 			distance:'2km',
@@ -326,6 +326,7 @@ onLoad(async ()=>{
 		await userStore.login()
 		await userStore.getProfile()
 		await addressStore.getAddressList()
+		await toggleCouponPopup()
 	}catch(err){
 		console.error('初始化失败', err)
 	}

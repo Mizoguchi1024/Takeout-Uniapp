@@ -90,7 +90,14 @@
 			"path" : "pages/shop/shop",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "外卖APP-店铺详情"
+			}
+		},
+		{
+			"path" : "pages/addressEdit/addressEdit",
+			"style" : 
+			{
+				"navigationBarTitleText" : "外卖APP-编辑地址"
 			}
 		}
 	],
